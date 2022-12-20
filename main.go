@@ -5,8 +5,6 @@ import (
 	"xorm/model"
 	"xorm/mysql"
 	"xorm/vlog"
-
-	"xorm.io/xorm"
 )
 
 const (
@@ -17,24 +15,16 @@ func main() {
 	// 连接数据库
 	engine, err := mysql.Conn(dbName)
 	if err != nil {
-		vlog.MyLog("数据库连接失败: ", err)
+		vlog.Vlog("数据库连接失败: ", err)
 		return
 	}
 	fmt.Println("数据库连接成功！")
 
 	// 创建表
-	err = createTable(engine)
+	err = engine.CreateTables(&model.User{})
 	if err != nil {
-		vlog.MyLog("数据库表创建失败: ", err)
+		vlog.Vlog("数据库表创建失败: ", err)
 		return
 	}
 	fmt.Println("数据库表创建成功！")
-}
-
-func createTable(engine *xorm.Engine) error {
-	err := engine.CreateTables(&model.User{})
-	if err != nil {
-		return err
-	}
-	return nil
 }
