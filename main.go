@@ -20,8 +20,8 @@ func main() {
 	}
 	fmt.Println("数据库连接成功！")
 
-	// 创建表
-	err = engine.CreateTables(&model.User{})
+	// 创建表(将结构体和数据库表自动同步)
+	err = engine.Sync(new(model.User))
 	if err != nil {
 		vlog.Vlog("数据库表创建失败: ", err)
 		return
