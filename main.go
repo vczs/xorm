@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"xorm/curd"
 	"xorm/model"
 	"xorm/mysql"
 	"xorm/vlog"
@@ -27,4 +28,7 @@ func main() {
 		return
 	}
 	fmt.Println("数据库表创建成功！")
+
+	// 增
+	curd.C(engine)
 }
