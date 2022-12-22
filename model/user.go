@@ -3,15 +3,15 @@ package model
 import "time"
 
 type User struct {
-	Id      uint             `xorm:"pk autoincr"`                                   // 主键 自增
-	Name    string           `xorm:"varchar(120) comment(姓名)"`                      // 指定类型 注释
-	Gender  string           `xorm:"default('男') comment(性别)"`                      // 默认值 注释
-	Age     uint             `xorm:"int 'usr_age' default(18) comment(年龄)"`         // 指定类型 指定列名 默认值 注释
-	Address string           `xorm:"unique(addr) comment(地址)"`                      // 唯一索引名 注释
-	Account string           `xorm:"varchar(120) notnull unique index comment(账号)"` // 指定类型 不为空 唯一 设置为索引 注释
-	Email   string           `xorm:"notnull index(ema) unique comment(邮箱)"`         // 不为空 设置为索引并添加索引名 唯一 注释
-	Ver     int              `xorm:"version comment(版本)"`                           // 在insert时默认为1且每次更新自动加1 注释
-	Other   string           `xorm:"-"`                                             // 不进行字段映射(这个字段不写入数据库)
+	Id      uint             `xorm:"pk autoincr"`                                // 主键 自增
+	Name    string           `xorm:"varchar(120) comment(姓名)"`                   // 指定类型 注释
+	Gender  string           `xorm:"default('男') comment(性别)"`                   // 默认值 注释
+	Age     uint             `xorm:"int 'user_age' default(18) comment(年龄)"`     // 指定类型 指定列名 默认值 注释
+	Address string           `xorm:"notnull comment(地址)"`                        // 不为空 注释
+	Account string           `xorm:"varchar(120) index unique(acc) comment(账号)"` // 指定类型 设置为索引 唯一索引 注释
+	Email   string           `xorm:"notnull unique index(ema) comment(邮箱)"`      // 不为空 唯一 设置为索引并添加索引名 注释
+	Ver     int              `xorm:"version comment(版本)"`                        // 在insert时默认为1且每次更新自动加1 注释
+	Other   string           `xorm:"-"`                                          // 不进行字段映射(这个字段不写入数据库)
 	Comm    `xorm:"extends"` // 此结构体的所有成员也映射到数据库中，extends可加载无限级
 }
 type Comm struct {

@@ -31,4 +31,7 @@ func main() {
 
 	// 增
 	curd.C(engine)
+
+	// 查
+	curd.R(engine)
 }
