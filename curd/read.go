@@ -12,7 +12,7 @@ func R(engine *xorm.Engine) {
 	// 查询一条数据
 	getData(engine)
 
-	// 查询所有数据
+	// 查询多条数据
 	findData(engine)
 
 	// 条件查询
@@ -52,7 +52,7 @@ func getData(engine *xorm.Engine) {
 	fmt.Printf("查询到account等于%s的数据:%v\n", "vczs003", user3)
 }
 
-// 查询所有数据 Find方法
+// 查询多条数据 Find方法
 func findData(engine *xorm.Engine) {
 	// Slice接收数据
 	sUsers := make([]model.User, 0)
