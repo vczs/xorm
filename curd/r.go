@@ -10,7 +10,7 @@ import (
 
 func R(engine *xorm.Engine) {
 	// 查询一条数据
-	//getData(engine)
+	getData(engine)
 
 	// 查询所有数据
 	findData(engine)
