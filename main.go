@@ -29,9 +29,21 @@ func main() {
 	}
 	fmt.Println("数据库表创建成功！")
 
+	// 是否显示SQL语句
+	engine.ShowSQL(false)
+
 	// 增
 	curd.C(engine)
 
 	// 查
 	curd.R(engine)
+
+	// 改
+	curd.U(engine)
+
+	// 删
+	curd.D(engine)
+
+	// 通用
+	curd.Comm(engine)
 }
