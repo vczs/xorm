@@ -8,6 +8,9 @@ import (
 	"xorm.io/xorm"
 )
 
+var ids = []int{40, 41, 42, 43, 44, 45, 46}
+var accounts = []string{"118540", "118541", "118542", "118543", "118544", "118545", "118546"}
+
 func Comm(engine *xorm.Engine) {
 	// 通用功能
 	myComm(engine)
@@ -16,12 +19,10 @@ func Comm(engine *xorm.Engine) {
 	MyTransaction(engine)
 }
 
-var ids = []int{10, 11, 12, 13, 14, 15}
-
 // 通用功能
 func myComm(engine *xorm.Engine) {
 	// 添加、查询、更新时排除指定字段  （添加时排除的字段给默认值）
-	num, err := engine.Omit("user_age", "gender").Insert(&model.User{Account: "vczs007", Name: "vcz07", Address: "US", Email: "vczs007@gmail.com"})
+	num, err := engine.Omit("user_age", "gender").Insert(&model.User{Account: accounts[6], Name: "vcz" + accounts[6], Address: "US", Email: accounts[6] + "@gmail.com"})
 	if num < 1 {
 		vlog.Vlog("添加、查询、更新时排除指定字段失败", err)
 	} else {
@@ -34,7 +35,7 @@ func myComm(engine *xorm.Engine) {
 	if num, _ := res.RowsAffected(); num > 1 {
 		vlog.Vlog("执行SQL失败", err)
 	} else {
-		fmt.Printf("执行SQL成功!")
+		fmt.Println("执行SQL成功!")
 	}
 }
 

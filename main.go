@@ -19,6 +19,7 @@ func main() {
 		vlog.Vlog("数据库连接失败: ", err)
 		return
 	}
+	engine.ShowSQL(false) // 是否显示SQL语句
 	fmt.Println("数据库连接成功！")
 
 	// 创建表(将结构体和数据库表自动同步)
@@ -28,9 +29,6 @@ func main() {
 		return
 	}
 	fmt.Println("数据库表创建成功！")
-
-	// 是否显示SQL语句
-	engine.ShowSQL(false)
 
 	// 增
 	curd.C(engine)

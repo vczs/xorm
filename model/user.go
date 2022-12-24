@@ -22,3 +22,19 @@ type Comm struct {
 func (User) TableName() string {
 	return "xorm_user"
 }
+
+type Work struct {
+	Id     int `xorm:"pk autoincr"`
+	UserId int
+	Works  string
+}
+
+// 为User结构体对应数据库表指定表名
+func (Work) TableName() string {
+	return "work"
+}
+
+type UserWork struct {
+	TempUser User `xorm:"extends"`
+	TempWork Work `xorm:"extends"`
+}

@@ -8,10 +8,6 @@ import (
 )
 
 func U(engine *xorm.Engine) {
-	update(engine)
-}
-
-func update(engine *xorm.Engine) {
 	// 通过主键id更新数据
 	user1 := new(model.User)
 	// 因为user的Ver字段加了乐观锁,Update的内容必须包含version原来的值,所以要先查询要更新数据的ver值
@@ -23,7 +19,7 @@ func update(engine *xorm.Engine) {
 		fmt.Printf("id=%d数据更新成功!\n", ids[1])
 	}
 
-	// 指定更新的字段 未指定的将不更新,指定了的即使为0或空字符串也会更新
+	// 指定更新的字段 未指定的将不更新 (指定了的即使为0或空字符串也会更新)
 	user2 := new(model.User)
 	engine.ID(ids[2]).Get(user2)
 	affected, _ = engine.ID(ids[2]).Cols("name", "user_age").Update(&model.User{Name: "cols01", Ver: user2.Ver})
@@ -33,7 +29,7 @@ func update(engine *xorm.Engine) {
 		fmt.Printf("id=%d数据更新成功!\n", ids[2])
 	}
 
-	// 指定必须更新的字段,其它字段根据值的情况自动判断
+	// 指定必须更新的字段 (其它字段根据值的情况自动判断)
 	user3 := new(model.User)
 	engine.ID(ids[3]).Get(user3)
 	affected, _ = engine.ID(ids[3]).MustCols("name").Update(&model.User{Name: "must01", Age: 38, Account: "must001", Address: "AB", Ver: user3.Ver})

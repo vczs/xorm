@@ -9,10 +9,6 @@ import (
 )
 
 func D(engine *xorm.Engine) {
-	del(engine)
-}
-
-func del(engine *xorm.Engine) {
 	// 通过主键id删除数据(软删除)
 	affected, _ := engine.ID(ids[1]).Delete(new(model.User))
 	if affected < 1 {
